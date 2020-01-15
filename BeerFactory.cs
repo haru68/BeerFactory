@@ -91,19 +91,21 @@ namespace BeerEncapsulator
 
         public int ProduceEncapsulatedBeerBottle(int NumberOfDesiredBottles)
         {
-            
+            int FilledBottlesCounter = 0;
+
             if (!IsComponentQuantityEnough(NumberOfDesiredBottles))
             {
                 DisplayMissingComponents(NumberOfDesiredBottles);
                 return 0;
             }
 
-            while(_availableBeerBottles>=1 && _availableBeerVolume >= 0.33 && _availableCapsules >= 1)
+            while (FilledBottlesCounter < NumberOfDesiredBottles)
             {
                 _availableBeerBottles--;
                 _availableBeerVolume = _availableBeerVolume - 0.33;
                 _availableCapsules--;
                 _NumberOfProducedBottles++;
+                FilledBottlesCounter++;
             }
 
             return _NumberOfProducedBottles;
